@@ -1,44 +1,44 @@
-# ParseFlow - PDF 表格智能提取工具
+# ParseFlow - Intelligent PDF Table Extraction Tool
 
-将复杂的图片/表格 PDF 文件转化为结构化的 JSON 数据。
+Convert complex image/table-based PDF files into structured JSON data.
 
-## 🌟 核心功能
+## 🌟 Core Features
 
-1.  **PDF 文档结构化提取**
-    *   支持多页、长表单 PDF。
-    *   精准提取字段 (Fields)、表格 (Tables)、勾选框 (Checkbox)。
-    *   输出层级分明的 JSON 数据。
+1.  **Structured PDF Document Extraction**
+    *   Supports multi-page, long-form PDFs.
+    *   Accurately extracts fields (Fields), tables (Tables), and checkboxes (Checkbox).
+    *   Outputs clearly hierarchical JSON data.
 
-2.  **长图分块与智能合并 (Advanced Chunking)**
-    *   **分块处理**：将页面切分为多个重叠的分块，以应对密集表格，提高 OCR 精度。
-    *   **智能合并**：使用 LLM (Gemini Pro) 智能识别重叠区域，自动去重并保留最完整数据。
-    *   **顺序保持**：严格保证提取结果与原文各个模块的上下顺序一致。
+2.  **Long-Image Chunking & Intelligent Merging (Advanced Chunking)**
+    *   **Chunk Processing**: Splits each page into multiple overlapping chunks to handle dense tables and improve OCR accuracy.
+    *   **Intelligent Merge**: Uses an LLM (Gemini Pro) to intelligently identify overlapping regions, automatically deduplicate, and keep the most complete data.
+    *   **Order Preservation**: Strictly ensures the extracted results match the original top-to-bottom order of each module.
 
-3.  **自动容错与重试**
-    *   内置 JSON 解析重试机制，遇到格式错误自动修正。
-    *   自动处理跨页表格的合并。
+3.  **Automatic Fault Tolerance & Retry**
+    *   Built-in JSON parsing retry mechanism that automatically fixes formatting errors when they occur.
+    *   Automatically handles merging of tables that span across pages.
 
-## 🛠️ 技术实现
+## 🛠️ Technical Implementation
 
-1.  **双模型架构**
-    *   **提取层 (Extract)**: 使用 `Google Gemini Flash` 进行快速、低成本的 OCR 识别。
-    *   **逻辑层 (Merge)**: 使用 `Google Gemini Pro` 处理复杂的合并逻辑（Chunk Merge & Page Merge）。
+1.  **Dual-Model Architecture**
+    *   **Extract Layer (Extract)**: Uses `Google Gemini Flash` for fast, low-cost OCR recognition.
+    *   **Logic Layer (Merge)**: Uses `Google Gemini Pro` to handle complex merge logic (Chunk Merge & Page Merge).
 
 2.  **Prompt Engineering**
-    *   **OCR**：专注于“所见即所得”，只提取完整可见内容。
-    *   **Merge**：利用 LLM 的语义理解能力来判断重复内容，代替传统的代码规则匹配，效果更优。
+    *   **OCR**: Focuses on “what you see is what you get,” extracting only fully visible content.
+    *   **Merge**: Leverages the LLM’s semantic understanding to identify duplicate content, replacing traditional rule-based code matching for better results.
 
-## 🚀 使用方法
+## 🚀 Usage
 
 ```bash
-# 默认配置（推荐）：2分块 + 智能合并
+# Default configuration (recommended): 2 chunks + intelligent merge
 python pdf_table_extractor.py
 
-# 自定义分块数量（3块用于超密集文档）
+# Custom number of chunks (3 chunks for ultra-dense documents)
 python pdf_table_extractor.py --chunks 3
-```
 
-## 📂 输入输出
 
-*   输入：`input/` 文件夹下的 PDF 文件
-*   输出：`output/` 文件夹下的 JSON 文件
+## 📂 input/output
+
+*   `input/` PDF 
+*   `output/` JSON 
