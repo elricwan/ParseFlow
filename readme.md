@@ -36,7 +36,7 @@ python pdf_table_extractor.py
 
 # Custom number of chunks (3 chunks for ultra-dense documents)
 python pdf_table_extractor.py --chunks 3
-
+```
 
 ## 📂 input/output
 
